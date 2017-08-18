@@ -21,14 +21,13 @@ public class MainActivity extends AppCompatActivity {
 
 // 1. 通过creat（）创建被观察者对象
         Observable.create(new ObservableOnSubscribe<Integer>() {
-
             // 2. 在复写的subscribe（）里定义需要发送的事件
             @Override
             public void subscribe(ObservableEmitter<Integer> emitter) throws Exception {
-
                 emitter.onNext(1);
                 emitter.onNext(2);
                 emitter.onNext(3);
+                emitter.onNext(4);
 
                 emitter.onComplete();
             }  // 至此，一个被观察者对象（Observable）就创建完毕
