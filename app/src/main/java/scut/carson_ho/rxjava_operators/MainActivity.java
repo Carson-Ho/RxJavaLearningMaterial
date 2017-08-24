@@ -2,6 +2,11 @@ package scut.carson_ho.rxjava_operators;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+
+import io.reactivex.Observable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Predicate;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -12,6 +17,58 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+//        Observable.just(1,2,3,4,5,6)
+//                .map(new Function<Integer,String>() {
+//                    @Override
+//                    public String apply(Integer value) throws Exception {
+//                        File file = new File(value);
+//                        file.createNewFile();
+//                        return "aa";
+//                    }
+//                });
+
+
+
+
+
+        Observable.just(1,2,3,4,5,6)
+                .all(new Predicate<Integer>(){
+                    @Override
+                    public boolean test( Integer integer) throws Exception {
+                        return (integer<=10);
+                        // 该函数用于判断Observable发送的10个数据是否都满足integer<=10
+                    }
+                }).subscribe(new Consumer<Boolean>() {
+            @Override
+            public void accept(Boolean aBoolean) throws Exception {
+                Log.d(TAG,"result is "+ aBoolean);
+                // 输出返回结果
+            }
+
+        });
+
+//        Observable.just(1,2,3,4,5,6)
+//                .all(new Func2<Integer, Boolean>() {
+//                    @Override
+//                    public Boolean apply(Integer integer, @NonNull Object o2) throws Exception {
+//                        return integer<=10;
+//                        // 该函数用于判断Observable发送的10个数据是否都满足integer<=10
+//                    }
+//
+//                    @Override
+//                    public Boolean call(Integer integer) {
+//                        return integer<=10;
+//                        // 该函数用于判断Observable发送的10个数据是否都满足integer<=10
+//                    }
+//                }).subscribe(new Consumer<Boolean>() {
+//            @Override
+//            public void accept(Boolean aBoolean) throws Exception {
+//                Log.d(TAG,"result is "+ aBoolean);
+//                // 输出返回结果
+//            }
+//
+//        });
 
 //        Observable.create(new Observable.OnSubscribe<Integer>() {
 //            @Override
