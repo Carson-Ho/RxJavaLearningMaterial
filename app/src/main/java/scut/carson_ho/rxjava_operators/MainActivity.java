@@ -4,11 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.Callable;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -16,6 +15,7 @@ import io.reactivex.disposables.Disposable;
 public class MainActivity extends AppCompatActivity {
 
     private String TAG = "RxJava";
+    Integer i = 10;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,62 +23,110 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        Observable.create(new ObservableOnSubscribe<Integer>() {
+//        // 1. 对i第1次赋值
+//        Integer i = 10;
+
+        // 2. 通过defer 定义被观察者对象
+        // 注：此时被观察者对象还没创建
+        Observable<Integer> observable = Observable.defer(new Callable<ObservableSource<? extends Integer>>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
-                // 每隔0.3s发送一个事件
-                  Thread.sleep(300);
-                  e.onNext(1);
-
-                  Thread.sleep(300);
-                  e.onNext(2);
-
-                  Thread.sleep(300);
-                  e.onNext(3);
-
-                  Thread.sleep(300);
-                  e.onNext(4);
-
-                  Thread.sleep(300);
-                  e.onNext(5);
-
-                  Thread.sleep(300);
-                  e.onNext(6);
-
-                  Thread.sleep(300);
-                  e.onNext(7);
-
-                  Thread.sleep(300);
-                  e.onNext(8);
-
-                  Thread.sleep(300);
-                  e.onNext(9);
-
-                  Thread.sleep(300);
-                  e.onComplete();
+            public ObservableSource<? extends Integer> call() throws Exception {
+                return Observable.just(i);
             }
-        }).sample(1, TimeUnit.SECONDS)// 每隔1s获取Observable最近发送的事件
-                .subscribe(new Observer<Integer>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        Log.d(TAG, "开始采用subscribe连接");
-                    }
+        });
 
-                    @Override
-                    public void onNext(Integer value) {
-                        Log.d(TAG, "接收到了事件"+ value  );
-                    }
+        // 2. 对i第2次赋值
+        i = 15;
 
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "对Error事件作出响应");
-                    }
+        // 3. 观察者开始订阅
+        // 注：此时，才会调用defer（）创建被观察者对象（Observable）
+        observable.subscribe(new Observer<Integer>() {
 
-                    @Override
-                    public void onComplete() {
-                        Log.d(TAG, "对Complete事件作出响应");
-                    }
-                });
+            @Override
+            public void onSubscribe(Disposable d) {
+                Log.d(TAG, "开始采用subscribe连接");
+            }
+
+            @Override
+            public void onNext(Integer value) {
+                Log.d(TAG, "接收到的整数是"+ value  );
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                Log.d(TAG, "对Error事件作出响应");
+            }
+
+            @Override
+            public void onComplete() {
+                Log.d(TAG, "对Complete事件作出响应");
+            }
+        });
+
+
+
+//        // 参数说明：
+//        // 参数1 = 第1次延迟时间；
+//        // 参数2 = 间隔时间数字；
+//        // 参数3 = 时间单位；
+//        Observable.interval(3,1,TimeUnit.SECONDS)
+//                // 该例子发送的事件序列特点：延迟3s后发送事件，每隔1秒产生1个数字（从0开始递增1，无限个）
+//                .subscribe(new Observer<Long>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        Log.d(TAG, "开始采用subscribe连接");
+//                    }
+//                    // 默认最先调用复写的 onSubscribe（）
+//
+//                    @Override
+//                    public void onNext(Long value) {
+//                        Log.d(TAG, "接收到了事件"+ value  );
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.d(TAG, "对Error事件作出响应");
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        Log.d(TAG, "对Complete事件作出响应");
+//                    }
+//
+//                });
+
+
+
+//        // 参数说明：
+//        // 参数1 = 事件序列起始点；
+//        // 参数2 = 事件数量；
+//        // 注：若设置为负数，则会抛出异常
+//        Observable.range(3,10)
+//                // 该例子发送的事件序列特点：从3开始发送，每次发送事件递增1，一共发送10个事件
+//                .subscribe(new Observer<Integer>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        Log.d(TAG, "开始采用subscribe连接");
+//                    }
+//                    // 默认最先调用复写的 onSubscribe（）
+//
+//                    @Override
+//                    public void onNext(Integer value) {
+//                        Log.d(TAG, "接收到了事件"+ value  );
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.d(TAG, "对Error事件作出响应");
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        Log.d(TAG, "对Complete事件作出响应");
+//                    }
+//
+//                });
+
 
 //
 //        Observable.sequenceEqual(
@@ -265,7 +313,7 @@ public class MainActivity extends AppCompatActivity {
 //            }
 //
 //        });
-    }
+}
 
 
 
