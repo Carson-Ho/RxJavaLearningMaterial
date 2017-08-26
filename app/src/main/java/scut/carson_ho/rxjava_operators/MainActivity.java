@@ -4,10 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import java.util.concurrent.Callable;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -21,47 +22,77 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
-//        // 1. 对i第1次赋值
-//        Integer i = 10;
-
-        // 2. 通过defer 定义被观察者对象
-        // 注：此时被观察者对象还没创建
-        Observable<Integer> observable = Observable.defer(new Callable<ObservableSource<? extends Integer>>() {
+        Observable.create(new ObservableOnSubscribe<Integer>() {
             @Override
-            public ObservableSource<? extends Integer> call() throws Exception {
-                return Observable.just(i);
+            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+                // 隔段事件发送时间
+                e.onNext(1);
+                Thread.sleep(500);
+
+                e.onNext(2);
+
+                Thread.sleep(1500);
+
+                e.onNext(3);
+                Thread.sleep(1500);
+
+                e.onNext(4);
+                Thread.sleep(500);
+                e.onNext(5);
+                Thread.sleep(500);
+                e.onNext(6);
+                Thread.sleep(1500);
+
+                e.onComplete();
             }
-        });
+        }).throttleWithTimeout(1, TimeUnit.SECONDS)//每1秒中采用数据
+                .subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-        // 2. 对i第2次赋值
-        i = 15;
+                    }
 
-        // 3. 观察者开始订阅
-        // 注：此时，才会调用defer（）创建被观察者对象（Observable）
-        observable.subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onNext(Integer value) {
+                        Log.d(TAG, "接收到了事件"+ value  );
+                    }
 
-            @Override
-            public void onSubscribe(Disposable d) {
-                Log.d(TAG, "开始采用subscribe连接");
-            }
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "对Error事件作出响应");
+                    }
 
-            @Override
-            public void onNext(Integer value) {
-                Log.d(TAG, "接收到的整数是"+ value  );
-            }
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "对Complete事件作出响应");
+                    }
+                });
 
-            @Override
-            public void onError(Throwable e) {
-                Log.d(TAG, "对Error事件作出响应");
-            }
 
-            @Override
-            public void onComplete() {
-                Log.d(TAG, "对Complete事件作出响应");
-            }
-        });
+
+
+
+
+//        // 使用2：获取位置索引大于发送事件序列时，设置默认参数
+//        Observable.just(1, 2, 3, 4, 5)
+//                .elementAt(6,10)
+//                .subscribe(new Consumer<Integer>() {
+//                    @Override
+//                    public void accept( Integer integer) throws Exception {
+//                        Log.d(TAG,"获取到的事件元素是： "+ integer);
+//                    }
+//                });
+//
+//
+//        // 获取的位置索引 ＞ 发送事件序列长度时，抛出异常
+//        Observable.just(1, 2, 3, 4, 5)
+//                .elementAtOrError(6)
+//                .subscribe(new Consumer<Integer>() {
+//                    @Override
+//                    public void accept( Integer integer) throws Exception {
+//                        Log.d(TAG,"获取到的事件元素是： "+ integer);
+//                    }
+//                });
 
 
 
