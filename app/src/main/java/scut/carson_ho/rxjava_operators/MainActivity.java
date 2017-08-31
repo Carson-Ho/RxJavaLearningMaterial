@@ -31,15 +31,15 @@ public class MainActivity extends AppCompatActivity {
 
                 e.onNext(2);
 
-                Thread.sleep(1500);
+                Thread.sleep(500);
 
                 e.onNext(3);
-                Thread.sleep(1500);
+                Thread.sleep(4500);
 
                 e.onNext(4);
-                Thread.sleep(500);
+                Thread.sleep(1500);
                 e.onNext(5);
-                Thread.sleep(500);
+                Thread.sleep(1500);
                 e.onNext(6);
                 Thread.sleep(1500);
 
