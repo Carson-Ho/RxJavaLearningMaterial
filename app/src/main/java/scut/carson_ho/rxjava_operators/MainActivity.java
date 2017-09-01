@@ -4,13 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import java.util.concurrent.TimeUnit;
-
 import io.reactivex.Observable;
-import io.reactivex.ObservableEmitter;
-import io.reactivex.ObservableOnSubscribe;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.BiFunction;
+import io.reactivex.functions.Consumer;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -22,52 +19,49 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Observable.create(new ObservableOnSubscribe<Integer>() {
+        Observable.just(1,2,3,4)
+                .reduce(new BiFunction<Integer, Integer, Integer>() {
+                    // 在该复写方法中复写聚合的逻辑
+                    @Override
+                    public Integer apply(@NonNull Integer s1, @NonNull Integer s2) throws Exception {
+                        Log.e(TAG, "本次计算的数据是： "+s1 +" 乘 "+ s2);
+                        return s1 * s2;
+                        // 本次聚合的逻辑是：全部数据相乘起来
+                        // 原理：第1次取前2个数据相乘，之后每次获取到的数据 = 返回的数据x原始下1个数据每
+                    }
+                }).subscribe(new Consumer<Integer>() {
             @Override
-            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
-                // 隔段事件发送时间
-                e.onNext(1);
-                Thread.sleep(500);
+            public void accept(@NonNull Integer s) throws Exception {
+                Log.e(TAG, "最终计算的结果是： "+s);
 
-                e.onNext(2);
-
-                Thread.sleep(500);
-
-                e.onNext(3);
-                Thread.sleep(4500);
-
-                e.onNext(4);
-                Thread.sleep(1500);
-                e.onNext(5);
-                Thread.sleep(1500);
-                e.onNext(6);
-                Thread.sleep(1500);
-
-                e.onComplete();
             }
-        }).throttleWithTimeout(1, TimeUnit.SECONDS)//每1秒中采用数据
-                .subscribe(new Observer<Integer>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+        });
 
-                    }
-
-                    @Override
-                    public void onNext(Integer value) {
-                        Log.d(TAG, "接收到了事件"+ value  );
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "对Error事件作出响应");
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Log.d(TAG, "对Complete事件作出响应");
-                    }
-                });
-
+        // 在一个被观察者发送事件前，追加发送被观察者 & 发送数据
+        // 注：追加数据顺序 = 后调用先追加
+//        Observable.just(4, 5, 6)
+//                .startWith(Observable.just(1, 2, 3))
+//                .subscribe(new Observer<Integer>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onNext(Integer value) {
+//                        Log.d(TAG, "接收到了事件"+ value  );
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.d(TAG, "对Error事件作出响应");
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        Log.d(TAG, "对Complete事件作出响应");
+//                    }
+//                });
 
 
 
