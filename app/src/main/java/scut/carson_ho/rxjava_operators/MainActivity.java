@@ -4,11 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-import java.util.concurrent.TimeUnit;
-
 import io.reactivex.Observable;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.functions.Consumer;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -20,27 +20,64 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Observable.create(new ObservableOnSubscribe<Integer>() {
+            @Override
+            public void subscribe(ObservableEmitter<Integer> e) throws Exception {
+                e.onNext(1);
+                e.onNext(2);
+                e.onError(new Exception("发生错误了"));
+                 }
+               })
+                .onExceptionResumeNext(new Observable<Integer>() {
+                    @Override
+                    protected void subscribeActual(Observer<? super Integer> observer) {
+                        observer.onNext(11);
+                        observer.onNext(22);
+                        observer.onComplete();
+                    }
+                })
+                .subscribe(new Observer<Integer>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+                    @Override
+                    public void onNext(Integer value) {
+                        Log.d(TAG, "接收到了事件"+ value  );
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        Log.d(TAG, "对Error事件作出响应");
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        Log.d(TAG, "对Complete事件作出响应");
+                    }
+                });
 
 
-            Observable.combineLatest(
-                    Observable.intervalRange(0, 3, 0, 2, TimeUnit.SECONDS), // 第1个发送数据事件的Observable
-                    Observable.intervalRange(0, 3, 0, 1, TimeUnit.SECONDS), // 第2个发送数据事件的Observable：从0开始发送、共发送3个数据、第1次事件延迟发送时间 = 1s、间隔时间 = 1s
-                    new BiFunction<Long, Long, Long>() {
-                @Override
-                public Long apply(Long o1, Long o2) throws Exception {
-                    // o1 = 第1个Observable发送的最新（最后）1个数据
-                    // o2 = 第2个Observable发送的每1个数据
-                    Log.e(TAG, "合并的数据是： "+ o1 + " "+ o2);
-                    return o1 + o2;
-                    // 合并的逻辑 = 相加
-                    // 即第1个Observable发送的最后1个数据 与 第2个Observable发送的每1个数据进行相加
-                }
-            }).subscribe(new Consumer<Long>() {
-                @Override
-                public void accept(Long s) throws Exception {
-                    Log.e(TAG, "合并的结果是： "+s);
-                }
-            });
+
+//            Observable.combineLatest(
+//                    Observable.intervalRange(0, 3, 0, 2, TimeUnit.SECONDS), // 第1个发送数据事件的Observable
+//                    Observable.intervalRange(0, 3, 0, 1, TimeUnit.SECONDS), // 第2个发送数据事件的Observable：从0开始发送、共发送3个数据、第1次事件延迟发送时间 = 1s、间隔时间 = 1s
+//                    new BiFunction<Long, Long, Long>() {
+//                @Override
+//                public Long apply(Long o1, Long o2) throws Exception {
+//                    // o1 = 第1个Observable发送的最新（最后）1个数据
+//                    // o2 = 第2个Observable发送的每1个数据
+//                    Log.e(TAG, "合并的数据是： "+ o1 + " "+ o2);
+//                    return o1 + o2;
+//                    // 合并的逻辑 = 相加
+//                    // 即第1个Observable发送的最后1个数据 与 第2个Observable发送的每1个数据进行相加
+//                }
+//            }).subscribe(new Consumer<Long>() {
+//                @Override
+//                public void accept(Long s) throws Exception {
+//                    Log.e(TAG, "合并的结果是： "+s);
+//                }
+//            });
 
 //
 //        Observable.concatArrayDelayError(
