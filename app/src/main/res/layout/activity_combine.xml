@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="请填写姓名"
+        />
+
+    <EditText
+        android:id="@+id/age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="请填写年龄"
+        />
+
+    <EditText
+        android:id="@+id/job"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="请填写职业"
+        />
+
+    <Button
+        android:id="@+id/list"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="提交"
+        android:enabled="false"
+        />
+
+
+</LinearLayout>

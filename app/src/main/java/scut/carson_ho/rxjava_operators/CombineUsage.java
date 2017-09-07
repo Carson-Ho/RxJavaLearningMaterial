@@ -34,7 +34,7 @@ public class CombineUsage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_combine);
 
 
         name = (EditText) findViewById(R.id.name);
