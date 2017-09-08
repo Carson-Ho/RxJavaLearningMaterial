@@ -2,14 +2,6 @@ package scut.carson_ho.rxjava_operators;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import io.reactivex.Observable;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Carson_Ho on 17/9/6.
@@ -26,72 +18,76 @@ public class establishUsage extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
+
+
+
+
         /*
          * 数组遍历
          **/
 
-        // 1. 设置需要传入的数组
-        Integer[] items = { 0, 1, 2, 3, 4 };
-
-        // 2. 创建被观察者对象（Observable）时传入数组
-        // 在创建后就会将该数组转换成Observable & 发送该对象中的所有数据
-        Observable.fromArray(items)
-                .subscribe(new Observer<Integer>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        Log.d(TAG, "数组遍历");
-                    }
-
-                    @Override
-                    public void onNext(Integer value) {
-                        Log.d(TAG, "数组中的元素 = "+ value  );
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "对Error事件作出响应");
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Log.d(TAG, "遍历结束");
-                    }
-
-                });
-
-
-        /*
-         * 集合遍历
-         **/
-        // 1. 设置一个集合
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(2);
-        list.add(3);
-
-        // 2. 通过fromIterable()将集合中的对象 / 数据发送出去
-        Observable.fromIterable(list)
-                .subscribe(new Observer<Integer>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-                        Log.d(TAG, "集合遍历");
-                    }
-
-                    @Override
-                    public void onNext(Integer value) {
-                        Log.d(TAG, "集合中的数据元素 = "+ value  );
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        Log.d(TAG, "对Error事件作出响应");
-                    }
-
-                    @Override
-                    public void onComplete() {
-                        Log.d(TAG, "遍历结束");
-                    }
-                });
+//        // 1. 设置需要传入的数组
+//        Integer[] items = { 0, 1, 2, 3, 4 };
+//
+//        // 2. 创建被观察者对象（Observable）时传入数组
+//        // 在创建后就会将该数组转换成Observable & 发送该对象中的所有数据
+//        Observable.fromArray(items)
+//                .subscribe(new Observer<Integer>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        Log.d(TAG, "数组遍历");
+//                    }
+//
+//                    @Override
+//                    public void onNext(Integer value) {
+//                        Log.d(TAG, "数组中的元素 = "+ value  );
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.d(TAG, "对Error事件作出响应");
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        Log.d(TAG, "遍历结束");
+//                    }
+//
+//                });
+//
+//
+//        /*
+//         * 集合遍历
+//         **/
+//        // 1. 设置一个集合
+//        List<Integer> list = new ArrayList<>();
+//        list.add(1);
+//        list.add(2);
+//        list.add(3);
+//
+//        // 2. 通过fromIterable()将集合中的对象 / 数据发送出去
+//        Observable.fromIterable(list)
+//                .subscribe(new Observer<Integer>() {
+//                    @Override
+//                    public void onSubscribe(Disposable d) {
+//                        Log.d(TAG, "集合遍历");
+//                    }
+//
+//                    @Override
+//                    public void onNext(Integer value) {
+//                        Log.d(TAG, "集合中的数据元素 = "+ value  );
+//                    }
+//
+//                    @Override
+//                    public void onError(Throwable e) {
+//                        Log.d(TAG, "对Error事件作出响应");
+//                    }
+//
+//                    @Override
+//                    public void onComplete() {
+//                        Log.d(TAG, "遍历结束");
+//                    }
+//                });
 
 
 
