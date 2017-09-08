@@ -23,6 +23,12 @@ public class FilterUsage extends AppCompatActivity {
 
     private String TAG = "RxJava";
 
+
+        /*
+         * 联想搜索优化
+         **/
+
+
     /*
      * 步骤1：设置控件变量 & 绑定
      **/

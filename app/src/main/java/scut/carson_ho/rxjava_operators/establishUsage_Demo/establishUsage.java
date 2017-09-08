@@ -1,7 +1,9 @@
-package scut.carson_ho.rxjava_operators;
+package scut.carson_ho.rxjava_operators.establishUsage_Demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import scut.carson_ho.rxjava_operators.R;
 
 /**
  * Created by Carson_Ho on 17/9/6.

@@ -1,4 +1,4 @@
-package scut.carson_ho.rxjava_operators;
+package scut.carson_ho.rxjava_operators.establishUsage_Demo;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

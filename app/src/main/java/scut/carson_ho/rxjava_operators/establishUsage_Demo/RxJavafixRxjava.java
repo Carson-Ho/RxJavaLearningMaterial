@@ -1,4 +1,4 @@
-package scut.carson_ho.rxjava_operators;
+package scut.carson_ho.rxjava_operators.establishUsage_Demo;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +16,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import scut.carson_ho.rxjava_operators.R;
 
 /**
  * Created by Carson_Ho on 17/9/8.
