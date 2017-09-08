@@ -20,6 +20,7 @@ import scut.carson_ho.rxjava_operators.R;
 
 /**
  * Created by Carson_Ho on 17/9/8.
+ * RxJava 结合 Retrofit 实现轮询
  */
 
 public class RxJavafixRxjava extends AppCompatActivity {
@@ -30,10 +31,6 @@ public class RxJavafixRxjava extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        /*
-         * RxJava 结合 Retrofit 实现轮询
-         **/
 
         /*
          * 步骤1：采用interval（）延迟发送
