@@ -32,20 +32,22 @@ public class establishUsage extends AppCompatActivity {
         Observable.just(1,2,4).repeatWhen(new Function<Observable<Object>, ObservableSource<?>>() {
             @Override
             public ObservableSource<?> apply(@NonNull Observable<Object> objectObservable) throws Exception {
-                // 返回新的被观察者 Observable
-                // 此处有两种情况：
-                // 1. 原始的Observable不重新发送事件：新的被观察者 Observable发送的事件 = Error事件
-                // 2. 原始的Observable重新发送事件：新的被观察者 Observable发送的事件 = 数据事件
+                // 将原始 Observable 停止发送事件的标识（Complete（） /  Error（））转换成1个 Object 类型数据传递给1个新被观察者（Observable）
+                // 以此决定是否重新订阅 & 发送原来的 Observable
+                // 此处有2种情况：
+                // 1. 若新被观察者（Observable）返回1个Complete事件，则不重新订阅 & 发送原来的 Observable
+                // 2. 若新被观察者（Observable）返回1个Next事件，则重新订阅 & 发送原来的 Observable
                 return objectObservable.flatMap(new Function<Object, ObservableSource<?>>() {
                     @Override
                     public ObservableSource<?> apply(@NonNull Object throwable) throws Exception {
 
-                        // 1. 若返回的Observable发送的事件 = Error事件，则原始的Observable不重新发送事件
-                        // 该异常错误信息可在观察者中的onError（）中获得
+                        // 情况1：若新被观察者（Observable）返回1个Complete事件，则不重新订阅 & 发送原来的 Observable
                         return Observable.empty();
+                        // 返回Error
+//                        return Observable.error(new Throwable("不再重新订阅事件"));
 
-                        // 2. 若返回的Observable发送的事件 = 数据事件，则原始的Observable重新发送事件（若持续遇到错误，则持续重试）
-//                         return Observable.just(1);
+                        // 情况2：若新被观察者（Observable）返回1个Next事件，则重新订阅 & 发送原来的 Observable
+                        // return Observable.just(1);
                     }
                 });
 
@@ -64,7 +66,8 @@ public class establishUsage extends AppCompatActivity {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.d(TAG, "对Error事件作出响应");
+
+                        Log.d(TAG, "对Error事件作出响应：" + e.toString());
                     }
 
                     @Override
