@@ -1,4 +1,4 @@
-package scut.carson_ho.rxjava_operators.establishUsage_Demo;
+package scut.carson_ho.rxjava_operators.establishUsage_Demo.实战系列;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,7 +20,7 @@ import scut.carson_ho.rxjava_operators.R;
 
 /**
  * Created by Carson_Ho on 17/9/8.
- * RxJava 结合 Retrofit 实现轮询
+ * 实战系列：轮询
  */
 
 public class RxJavafixRxjava extends AppCompatActivity {

@@ -20,8 +20,8 @@ import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import scut.carson_ho.rxjava_operators.R;
-import scut.carson_ho.rxjava_operators.establishUsage_Demo.GetRequest_Interface;
-import scut.carson_ho.rxjava_operators.establishUsage_Demo.Translation;
+import scut.carson_ho.rxjava_operators.establishUsage_Demo.实战系列.GetRequest_Interface;
+import scut.carson_ho.rxjava_operators.establishUsage_Demo.实战系列.Translation;
 
 /**
  * Created by Carson_Ho on 17/9/11.

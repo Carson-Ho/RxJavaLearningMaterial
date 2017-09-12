@@ -21,7 +21,7 @@
 
         <activity android:name=".establishUsage_Demo.establishUsage">
         </activity>
-        <activity android:name=".establishUsage_Demo.RxJavafixRxjava">
+        <activity android:name=".establishUsage_Demo.实战系列.RxJavafixRxjava">
         </activity>
         <activity android:name=".CombineUsage">
         </activity>
