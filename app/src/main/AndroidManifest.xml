@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".functionUsage_Demo.RxJavafixRetrofit2">
+        <activity android:name=".FunctionOperator.RxJavafixRetrofit2">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,16 +19,14 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".establishUsage_Demo.establishUsage">
+        <activity android:name=".EstablishOperator.establishUsage">
         </activity>
-        <activity android:name=".establishUsage_Demo.实战系列.RxJavafixRxjava">
-        </activity>
-        <activity android:name=".CombineUsage">
+        <activity android:name=".EstablishOperator.Demo.RxJavafixRxjava">
         </activity>
 
         <activity android:name=".FilterUsage">
         </activity>
-        <activity android:name=".functionUsage_Demo.RxJavafixRetrofit">
+        <activity android:name=".FunctionOperator.RxJavafixRetrofit">
         </activity>
 
         <activity android:name=".MainActivity">
