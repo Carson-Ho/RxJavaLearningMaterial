@@ -20,7 +20,7 @@ import scut.carson_ho.rxjava_operators.R;
 
 /**
  * Created by Carson_Ho on 17/9/8.
- * 实战系列：轮询
+ * 实战系列：无条件轮询
  */
 
 public class RxJavafixRxjava extends AppCompatActivity {

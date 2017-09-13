@@ -84,6 +84,7 @@ public class FilterUsage extends AppCompatActivity {
         /*
          * 功能防抖
          **/
+        
 //        // 注册控件
 //        button = (Button)findViewById(R.id.button);
 //

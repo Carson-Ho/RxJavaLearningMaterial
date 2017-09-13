@@ -24,7 +24,7 @@ import scut.carson_ho.rxjava_operators.EstablishOperator.Demo.Translation;
 
 /**
  * Created by Carson_Ho on 17/9/9.
- * Demo for 轮询
+ * Demo for 有条件轮询
  */
 
 public class RxJavafixRetrofit extends AppCompatActivity {
