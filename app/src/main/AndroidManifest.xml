@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".FunctionOperator.RxJavafixRetrofit2">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -29,8 +29,22 @@
         <activity android:name=".FunctionOperator.RxJavafixRetrofit">
         </activity>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".CombineOperator.UsageDemo1">
         </activity>
+        <activity android:name=".CombineOperator.UsageDemo2">
+        </activity>
+        <activity android:name=".CombineOperator.UsageDemo3">
+        </activity>
+
+        <activity android:name=".FunctionOperator.RxJavafixRetrofit1">
+        </activity>
+        <activity android:name=".FunctionOperator.RxJavafixRetrofit2">
+        </activity>
+        <activity android:name=".SwitchOperator.Demo.RxJavaxRxtrofit3">
+        </activity>
+        <activity android:name=".SwitchOperator.SwitchUsage">
+        </activity>
+       
     </application>
 
 </manifest>
