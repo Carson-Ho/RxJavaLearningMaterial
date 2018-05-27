@@ -1,35 +1,77 @@
 # RxJava_LearningMaterial
 这是 一份全面介绍Android RxJava的学习资料，内容包括如下：
 
-![示意图](http://upload-images.jianshu.io/upload_images/944365-4c1c1eb44ffe01e5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![示意图](https://upload-images.jianshu.io/upload_images/944365-87720d60a23e704d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
 
-### 1. 入门教程
-关于RxJava的入门教程，看这篇就够了
+# 1. 入门教程
+[这是一篇 清晰 & 易懂的Rxjava 入门教程](http://blog.csdn.net/carson_ho/article/details/78179340)
 
-[Android：这是一篇 清晰 & 易懂的Rxjava 入门教程](http://www.jianshu.com/p/a406b94f3188)
+[Android ：RxJava2.0到底更新了什么？（含使用建议）](http://blog.csdn.net/carson_ho/article/details/79157408)
+
+[这是一份面向初学者的RxJava使用指南](http://blog.csdn.net/carson_ho/article/details/79168602)
 
 
-### 2. 操作符讲解
+# 2. 原理
+
+ [手把手带你源码分析 RxJava](http://blog.csdn.net/carson_ho/article/details/79168523)
+ 
+ 
+ 
+# 3. 操作符详解 系列
 `RxJava`如此受欢迎的原因，在于其**提供了丰富 & 功能强大的操作符，几乎能完成所有的功能需求**
 
-[Android RxJava：最基础的操作符详解 - 创建操作符](http://www.jianshu.com/p/e19f8ed863b1)
+[ RxJava操作符 详细使用手册](http://blog.csdn.net/carson_ho/article/details/79191327)
 
-[Android RxJava：变换操作符](http://www.jianshu.com/p/904c14d253ba)
+[ 创建操作符](http://blog.csdn.net/carson_ho/article/details/78246732)
 
-[Android RxJava：组合 / 合并操作符](http://www.jianshu.com/p/c2a7c03da16d)
-### 3. 实际案例分析
+[功能性操作符](http://blog.csdn.net/carson_ho/article/details/78537277)
 
-[Android RxJava 实际应用案例讲解：网络请求轮询](http://www.jianshu.com/p/11b3ec672812)
+[过滤操作符](http://blog.csdn.net/carson_ho/article/details/78683064)
 
-[Android RxJava 实际应用案例讲解：网络请求嵌套回调](http://www.jianshu.com/p/5f5d61f04f96)
+[组合 / 合并操作符](http://blog.csdn.net/carson_ho/article/details/78455349)
 
-[Android RxJava 实际应用讲解：合并数据源 & 同时展示](http://www.jianshu.com/p/fc2e551b907c)
+[ 变换操作符](http://blog.csdn.net/carson_ho/article/details/78315437)
 
-[Android RxJava 实际应用讲解：从磁盘 / 内存缓存中 获取缓存数据](http://www.jianshu.com/p/6f3b6b934787)
+[条件 / 布尔操作符](http://blog.csdn.net/carson_ho/article/details/78949306)
+ 
+# 4. 实际应用场景（含开发实例讲解）
 
-[Android RxJava 实际应用讲解：联合判断多个事件](http://www.jianshu.com/p/2becc0eaedab)
+[RxJava的最佳开发场景汇总](http://blog.csdn.net/carson_ho/article/details/79168723)
 
-文章系列持续更新中.....
+[细说 线程控制（切换 / 调度 ）](https://www.jianshu.com/p/5225b2baaecd)
+
+[一文带你全面了解 背压策略](http://blog.csdn.net/carson_ho/article/details/79081407)
+
+[网络请求嵌套回调](http://blog.csdn.net/carson_ho/article/details/78315696)
+
+[网络请求出错重连](http://blog.csdn.net/carson_ho/article/details/78651602)
+
+[网络请求轮询（有条件）](http://blog.csdn.net/carson_ho/article/details/78558790)
+
+[网络请求轮询（无条件）](http://blog.csdn.net/carson_ho/article/details/78256466)
+
+[联想搜索优化](http://blog.csdn.net/carson_ho/article/details/78849661)
+
+[功能防抖](http://blog.csdn.net/carson_ho/article/details/78849689)
+
+[从磁盘 / 内存缓存中 获取缓存数据](http://blog.csdn.net/carson_ho/article/details/78455449)
+
+[合并数据源 & 同时展示数据](http://blog.csdn.net/carson_ho/article/details/78455544)
+
+[联合判断](http://blog.csdn.net/carson_ho/article/details/78455624)
+
+# 5. 结合开源库使用：网络请求库Rerofit
+
+[Retrofit 与 RxJava联合使用汇总（含实例教程）](http://blog.csdn.net/carson_ho/article/details/79125101)
+
+[优雅实现 网络请求嵌套回调](http://blog.csdn.net/carson_ho/article/details/78315696)
+
+[网络请求轮询（有条件）](http://blog.csdn.net/carson_ho/article/details/78558790)
+
+[网络请求轮询（无条件）](http://blog.csdn.net/carson_ho/article/details/78256466)
+
+[网络请求出错重连](http://blog.csdn.net/carson_ho/article/details/78651602)
+[合并数据源 & 同时展示数据](http://blog.csdn.net/carson_ho/article/details/78455544)
 
 # 关于作者
 - ID：Carson_Ho
